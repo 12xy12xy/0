@@ -1,6 +1,5 @@
 {
-  "name": "my-web-server",
-  "version": "1.0.0",
+  "name": "my-server",
   "scripts": {
     "start": "node server.js"
   },
