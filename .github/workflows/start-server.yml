@@ -1,10 +1,12 @@
-name: Start Node.js Server
+name: Build and deploy
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
-  start-server:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -13,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Start server
+      - name: Build and deploy
         run: |
-          node server.js &
-          echo "Server started"
+          npm run build
+          npm run deploy
