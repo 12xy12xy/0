@@ -1,21 +1,19 @@
-name: Build and deploy
+name: Deploy Pages
 
-on:
-  push:
-    branches:
-      - main
+on: push
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build and deploy
-        run: |
-          npm run build
-          npm run deploy
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: |
+        npm start &
+        mkdir -p docs
+        cp -r * docs/
+        git config --global user.name "Your Name"
+        git config --global user.email "your-email@example.com"
+        git add .
+        git commit -m "Deploy"
+        git push origin gh-pages
